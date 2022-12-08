@@ -1,0 +1,21 @@
+{
+    "name": "foskytech/yunmei-auth",
+    "description": "云莓智能账号和寝室信息获取",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "FoskyTech\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mouse123s",
+            "email": "i@mouse123.cn"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.3"
+    }
+}
