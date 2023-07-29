@@ -8,6 +8,13 @@ namespace FoskyTech;
 
 class YunmeiAuth
 {
+    /**
+     * 登录
+     * @param mixed $username 用户名
+     * @param mixed $password 密码
+     * 
+     * @return array
+     */
     public function login(string $username, string $password) {
         $data = $this->request('https://base.yunmeitech.com/login', [
             'userName'  =>  $username,
@@ -32,6 +39,13 @@ class YunmeiAuth
         ];
     }
 
+    /**
+     * 获取学校信息，并获得新token
+     * @param mixed $userId 登录获取到的用户Id
+     * @param mixed $token 登录获取到的token
+     * 
+     * @return array
+     */
     public function schoolInfo($userId, string $token) {
         $data = $this->request('https://base.yunmeitech.com/userschool/getbyuserid', [
             'userId'  =>  $userId
@@ -58,6 +72,15 @@ class YunmeiAuth
         ];
     }
 
+    /**
+     * 获取宿舍信息及门锁信息
+     * @param mixed $server_url 学校信息返回的服务器地址
+     * @param mixed $userId 用户Id
+     * @param mixed $token 新token
+     * @param mixed $schoolNo 学校编号
+     * 
+     * @return array
+     */
     public function dormInfo(string $server_url, $userId, string $token, string $schoolNo) {
         $data = $this->request($server_url . '/dormuser/getuserlock', [
             'schoolNo'  =>  $schoolNo
@@ -79,6 +102,18 @@ class YunmeiAuth
         ];
     }
 
+    /**
+     * 获取室友列表
+     * @param mixed $server_url 学校信息返回的服务器地址
+     * @param mixed $userId 用户Id
+     * @param mixed $token 新token
+     * @param mixed $schoolNo 学校编号
+     * @param mixed $areaNo 校区编号
+     * @param mixed $buildNo 建筑编号
+     * @param mixed $dormNo 寝室号
+     * 
+     * @return array
+     */
     public function getRoommate(string $server_url, $userId, string $token, string $schoolNo, string $areaNo, string $buildNo, string $dormNo) {
         $data = $this->request($server_url . '/student/getbydormloginuser', [
             'schoolNo'  =>  $schoolNo,
@@ -114,6 +149,7 @@ class YunmeiAuth
             'error_description'    =>  '未知错误'
         ];
     }
+
     private function request(string $url = '', array $param = [], array $headers = []) {
         $curl = curl_init();
 
